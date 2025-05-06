@@ -1,4 +1,10 @@
-# AngularTp
+# How to connect
+
+You can connect to the server by entering these IDs
+username : user
+password : password
+
+## Angular TP
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
 
