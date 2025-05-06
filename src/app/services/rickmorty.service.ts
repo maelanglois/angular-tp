@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { RickMortyI } from '@/interfaces/rickmorty.interface';
 
 @Injectable({
@@ -11,9 +11,15 @@ export class RickMortyService {
     public characters = signal<RickMortyI[]>([]);
     readonly url = 'https://rickandmortyapi.com/api/character';
 
-    getCharacter(): Observable<RickMortyI[]> {
-        return this.http.get<RickMortyI[]>(this.url).pipe(
-            tap(characters => this.characters.set(characters))
+    getCharacters(): Observable<RickMortyI[]> {
+        return this.http.get<{results: RickMortyI[]}>(this.url).pipe(
+            map((response) => response.results)
         );
+    }
+    
+    getCharacter(id:string):Observable<RickMortyI> {
+        return this.http.get<RickMortyI>(`${this.url}/${id}`).pipe(
+            map((response) => response)
+        )
     }
 }

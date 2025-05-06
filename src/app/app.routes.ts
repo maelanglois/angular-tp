@@ -6,7 +6,7 @@ import { RickmortyComponent } from '@/components/rickmorty/rickmorty.component';
 import { authRoutes } from './routes/auth.routes';
 import { AuthGuard } from './guards/auth/auth.guard';
 
-const appTitle = "WebSnapApp";
+const appTitle = "RickMortyApp";
 
 export const routes: Routes = [
   {
@@ -18,6 +18,12 @@ export const routes: Routes = [
   {
     path:"rickmorty",
     title: `List des personnages - ${appTitle}`,
+    // canActivate: [AuthGuard],
+    loadComponent: () => import("@/components/rickmorty-list/rickmorty-list.component").then(m => m.RickmortyListComponent)
+  },
+  {
+    path:"rickmorty/:id",
+    title: `Details du personnage - ${appTitle}`,
     // canActivate: [AuthGuard],
     loadComponent: () => import("@/components/rickmorty/rickmorty.component").then(m => m.RickmortyComponent)
   },

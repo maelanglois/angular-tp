@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WebSnapDetailsComponent } from './web-snap-details.component';
+import { RickmortyListComponent } from './rickmorty-list.component';
 
-describe('WebSnapDetailsComponent', () => {
-  let component: WebSnapDetailsComponent;
-  let fixture: ComponentFixture<WebSnapDetailsComponent>;
+describe('RickmortyListComponent', () => {
+  let component: RickmortyListComponent;
+  let fixture: ComponentFixture<RickmortyListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WebSnapDetailsComponent]
+      imports: [RickmortyListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WebSnapDetailsComponent);
+    fixture = TestBed.createComponent(RickmortyListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

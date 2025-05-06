@@ -2,7 +2,7 @@ import { User } from "@/models/user.model";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, tap } from "rxjs";
+import { Observable, tap } from "rxjs";import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -20,12 +20,14 @@ export class AuthService{
     return this.authToken();
   }
 
+  private toastr = inject(ToastrService);
+
   login(username: string, password: string): Observable<User[] | undefined>{
     return this.http.get<User[]>(`${this.authApiUrl}?username=${username}&password=${password}`).pipe(
       tap(users => {
         const user = users[0];
         if(!user || !user.token){
-          alert("Connexion échouée :  Nom d'utilisateur ou mot de passe incorrect.");
+          this.toastr.error("Connexion échouée :  Nom d'utilisateur ou mot de passe incorrect.");
           this.isAuthenticated.set(false);
           this.authToken.set(null);
           throw new Error("Le nom de l'utilisateur ou le mot de passe sont incorrect / L'utilisateur n'existe pas dans la base de données.");

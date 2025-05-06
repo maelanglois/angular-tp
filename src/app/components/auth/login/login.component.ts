@@ -2,6 +2,7 @@ import { AuthService } from '@/services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit{
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   isSubmitted: WritableSignal<boolean> = signal(false);
+
+  private toastr = inject(ToastrService);
 
   ngOnInit(): void{
     this.loginForm = this.fb.group({
@@ -45,7 +48,7 @@ export class LoginComponent implements OnInit{
       {
         error: (err) => {
           console.error("Login error :",err);
-          alert("Une erreur est survenue lors de la connexion.");
+          this.toastr.error("Une erreur est survenue lors de la connexion.");
         }
       }
     );

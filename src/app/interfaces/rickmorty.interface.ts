@@ -7,3 +7,7 @@ export interface RickMortyI {
     gender:string;
     image:string;
 }
+
+export interface WebRickMortyModelI{
+    websnap?:RickMortyI;
+  }

@@ -1,0 +1,5 @@
+<section class="grid">
+    @for(actualRickmorty of rickmortyDatalist(); track idx; let idx = $index){
+      <app-rickmorty-details [character]="actualRickmorty"></app-rickmorty-details>
+    }
+  </section>

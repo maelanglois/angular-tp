@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { RickMortyService } from '@/services/rickmorty.service';
+import { RickMortyI } from '@/interfaces/rickmorty.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rickmorty',
@@ -14,9 +15,25 @@ import { RickMortyService } from '@/services/rickmorty.service';
 
 export class RickmortyComponent implements OnInit {
   private rickmortyService = inject(RickMortyService);
-  characters = this.rickmortyService.characters;
+  character: WritableSignal<RickMortyI|undefined> = signal(undefined);
 
-  ngOnInit() {
-    this.rickmortyService.getCharacter().subscribe();
+  private route = inject(ActivatedRoute)
+
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.params['id'];
+    console.log('id', id);
+    
+    this.rickmortyService.getCharacter(id).subscribe(
+      {
+        next: (response) => {          
+          this.character.set(response)
+        },
+        error: () => {
+          console.log("error");
+        }
+      },
+    );
   }
+
 }
