@@ -10,7 +10,7 @@ export class RickMortyService {
   private http = inject(HttpClient);
   public characters = signal<RickMortyI[]>([]);
   readonly url = 'https://rickandmortyapi.com/api/character';
-  
+
   readonly nasaUrl = 'https://api.nasa.gov/planetary/apod';
   private apiKey = 'zbFWOjM5P0ucALw4qi95evMmavUZa7lHGtoZM2D7';
 
@@ -29,8 +29,7 @@ export class RickMortyService {
 
   // Nasa
   getNasa(date?: string): Observable<any> {
-    const endpoint = 'planetary/apod';
-    const params = date ? `?api_key=${this.apiKey}&date=${date}` : `?api_key=${this.apiKey}`;
-    return this.http.get<any>(`${this.nasaUrl}${endpoint}${params}`);
-  }
+  const params = date ? `?api_key=${this.apiKey}&date=${date}` : `?api_key=${this.apiKey}`;
+  return this.http.get<any>(`${this.nasaUrl}${params}`);
+}
 }
