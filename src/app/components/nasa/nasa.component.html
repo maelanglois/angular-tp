@@ -1,0 +1,9 @@
+<article class="web-snap-card" *ngIf="nasa() as data">
+    <h2>{{data.title}}</h2>
+<p>Date: {{data.date}}</p>
+<img [src]="data.url" [alt]="data.title"/>
+</article>
+
+<article *ngIf="!nasa()" class="web-snap-card">
+    <p>Ca charge...</p>
+</article>

@@ -28,6 +28,12 @@ export const routes: Routes = [
     loadComponent: () => import("@/components/rickmorty/rickmorty.component").then(m => m.RickmortyComponent)
   },
   {
+    path:"nasa",
+    title: `Nasa Picture of the day - ${appTitle}`,
+    // canActivate: [AuthGuard],
+    loadComponent: () => import("@/components/nasa/nasa.component").then(m => m.NasaComponent)
+  },
+  {
     path: "auth",
     loadChildren: () => import("./routes/auth.routes").then(m => m.authRoutes)
   },

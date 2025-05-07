@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WebSnapComponent } from './web-snap.component';
+import { NasaComponent } from './nasa.component';
 
-describe('WebSnapComponent', () => {
-  let component: WebSnapComponent;
-  let fixture: ComponentFixture<WebSnapComponent>;
+describe('NasaComponent', () => {
+  let component: NasaComponent;
+  let fixture: ComponentFixture<NasaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WebSnapComponent]
+      imports: [NasaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WebSnapComponent);
+    fixture = TestBed.createComponent(NasaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

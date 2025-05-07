@@ -22,7 +22,6 @@ export class RickmortyComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
-    console.log('id', id);
     
     this.rickmortyService.getCharacter(id).subscribe(
       {
